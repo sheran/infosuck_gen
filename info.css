@@ -1,0 +1,110 @@
+#imgwrapper {
+   position: relative;
+   width: 685px;
+   margin: 0 auto;
+   border-style: solid;
+   border-width: 2px;
+   border-color: cyan;
+}
+
+.wrapper {
+	position: relative;
+	margin: 0 auto;
+	width: 100%;
+}
+
+#tem_caption {
+	text-align: center;
+	font-family: "Palatino";
+	font-size: 18px;
+	text-transform: uppercase;
+}
+
+.txt1 {
+   position: absolute;
+   top: 8px;
+   left: 62px;
+   width: 200px;
+   clip: rect(0px, 200px, 140px, 0px);
+   word-wrap: break-word;
+   font-family: "Courier New";
+   font-weight: normal;
+   font-size: 16px;
+   text-align: left;
+}
+
+.txt2 {
+   position: absolute;
+   top: 8px;
+   left: 286px;
+   width: 200px;
+   clip: rect(0px, 200px, 140px, 0px);
+   word-wrap: break-word;
+   font-family: "Courier New";
+   font-weight: normal;
+   font-size: 16px;
+   text-align: left;
+}
+
+.txt3 {
+   position: absolute;
+   top: 8px;
+   left: 510px;
+   width: 200px;
+   clip: rect(0px, 200px, 140px, 0px);;
+   word-wrap: break-word;
+   font-family: "Courier New";
+   font-weight: normal;
+   font-size: 16px;
+   text-align: left;
+}
+
+h3.header {
+	text-align: center;
+}
+
+#arrow-left {
+	position: relative;
+	top: -120px;
+}
+
+#arrow-right {
+	position: relative;
+	top: -120px;
+}
+
+a.fade  {
+	opacity: 0.75;
+	-webkit-transition: opacity .2s ease;
+	-moz-transition: opacity .2s ease;
+	-o-transition: opacity .2s ease;
+	transition: opacity .2s ease;
+}
+
+a.fade:hover {
+	opacity: 1;
+}
+
+body {
+	font-family: "Helvetica";
+	font-size: 13px;
+}
+
+.outer {
+	overflow: hidden;
+	position: relative;
+	
+}
+
+.middle {
+	float: left;
+	position: relative;
+	left: 50%;
+	
+}
+
+.inner {
+	position: relative;
+	left: -50%;
+	
+}

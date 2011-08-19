@@ -1,0 +1,132 @@
+<html>
+<head>
+	<title>infosuck generator</title>
+	<link rel="stylesheet" type="text/css" href="info.css" media="screen" />
+<script src="jquery-1.6.2.min.js"></script>
+
+<script language="JavaScript">
+	$.infosuck_global = {};
+	$.infosuck_global.imgs = rollImages();
+	$(document).ready(populate);
+	
+	function populate(){
+		for(i=1; i< 4; i++){
+			var d_font_size = 'div.txt'+i;
+			var d_panel_id = 'panel'+i;
+			var d_text_id = 'text_panel'+i;
+			$(d_font_size).css("font-size",document.getElementById("font"+i).value+"px");
+			document.getElementById(d_panel_id).innerHTML = document.getElementById(d_text_id).value;
+		}
+		
+	}
+	
+	function move(direction){
+		var imgs = $.infosuck_global.imgs;
+		var img_index = jQuery.inArray($('#template_img').attr('src'),imgs);
+		if(direction == "left"){
+			img_index -= 1;
+		} else if(direction == "right"){
+			img_index += 1;
+		} else {
+			return;
+		}
+		if(img_index < 0){
+			img_index = imgs.length-1;
+		} else if(img_index > (imgs.length - 1)){
+			img_index = 0;
+		}
+		$('#template_img').attr('src',imgs[img_index]);
+		$('#template').attr('value',imgs[img_index]);
+		tem_name = imgs[img_index];
+		tem_name = tem_name.substr(0,tem_name.indexOf("."));
+		$('#tem_caption').html("[ "+tem_name+" ]");
+	}
+	
+	function rollImages(){
+		var img_file_name = "template#.png";
+		var arr = new Array();
+		for(q=0; q< 11; q++){
+			arr[q] = img_file_name.replace("#",q+1);
+		}
+		return arr;
+	}
+	
+	function prepSelect(id, def, low_lim, hi_lim){
+		var tag = "<select onChange='populate()' id='"+id+"' name='"+id+"' >\n";
+		for(j=low_lim; j < hi_lim; j++){
+			if(j == def){
+				tag += "<option value='"+j+"' selected>"+j+"</option>\n";
+			} else {
+				tag += "<option value='"+j+"'>"+j+"</option>\n";
+			}
+			
+		}
+		tag += "</select>\n";
+		return tag;
+	}
+	
+	function wipe(){
+		document.saveform.reset();
+		populate();
+	}
+</script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-2236848-8']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+	<h3 class="header"><a href="http://blackhats.com/infosuck.html">Infosuck</a> generator</h3>
+
+<div class="wrapper">
+	<div class="outer">
+		<div class="middle">
+			<div class="inner">
+				<a class="fade" onClick="move('left')"><img id="arrow-left" src="icon-pr.png" /></a>
+				<img id="template_img" src="template1.png" />
+				<a class="fade" onClick="move('right')"><img id="arrow-right" src="icon-ne.png" /></a>
+				<div id="panel1" class="txt1"></div>
+				<div id="panel2" class="txt2"></div>
+				<div id="panel3" class="txt3"></div>
+			</div> <!-- inner -->
+		</div> <!-- middle -->
+	</div> <!-- outer -->
+	<div id="tem_caption">[ template1 ]</div>
+</div>
+
+<br>
+<hr>
+
+<div class="wrapper">
+	<div class="outer">
+		<div class="middle">
+			<div class="inner">
+				<form name="saveform" method="POST" action="download.php">
+				<p>Panel 1: <input type="text" onBlur="populate()" value="" name="text1" id="text_panel1" size="70" />Font size: <script>document.write(prepSelect("font1",16,8,31));</script></p>
+				<p>Panel 2: <input type="text" onBlur="populate()" value="" name="text2" id="text_panel2" size="70" />Font size: <script>document.write(prepSelect("font2",16,8,31));</script></p>
+				<p>Panel 3: <input type="text" onBlur="populate()" value="" name="text3" id="text_panel3" size="70" />Font size: <script>document.write(prepSelect("font3",16,8,31));</script></p>
+				<input type="hidden" name="template" id="template" value="template1.png">
+				<p></p>
+				<p style="text-align: center;"><input type="button" value="Preview" onClick="populate()" />
+				<input type="submit" value="Download" />
+				<input type="button" value="Clear" onClick="wipe()"/> </p>
+				</form>
+				<p>- For the utterly paranoid, don't click the "Download" button, take a screenshot.  You CAN read JS right?</p>
+				<p>- You want the source code? Get it on github here: <a href="https://github.com/sheran/infosuck_gen">https://github.com/sheran/infosuck_gen</a></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
